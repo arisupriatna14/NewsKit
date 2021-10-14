@@ -38,7 +38,7 @@ public final class NKNewsRemoteDataSource: NSObject {
 extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
   public func searchNews(by query: String) -> AnyPublisher<[News], Error> {
     return Future<[News], Error> { completion in
-      let url = URL(string: "\(NewsEndpoint.Get.search(query: query).url)\(NewsKit().apiKey)")!
+      let url = URL(string: "\(NewsEndpoint.Get.search(query: query).url)\(NewsKit.apiKey)")!
       
       AF.request(url)
         .validate()
@@ -55,7 +55,7 @@ extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
   
   public func fetchNewsByCategory(by category: NewsCategory) -> AnyPublisher<[News], Error> {
     return Future<[News], Error> { completion in
-      let url = URL(string: "\(NewsEndpoint.Get.category(category: category).url)\(NewsKit().apiKey)")!
+      let url = URL(string: "\(NewsEndpoint.Get.category(category: category).url)\(NewsKit.apiKey)")!
       
       AF.request(url)
         .validate()
@@ -72,7 +72,7 @@ extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
   
   public func fetchNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[News], Error> {
     return Future<[News], Error> { completion in
-      let url = URL(string: "\(NewsEndpoint.Get.topHeadline(country: country).url)\(NewsKit().apiKey)")!
+      let url = URL(string: "\(NewsEndpoint.Get.topHeadline(country: country).url)\(NewsKit.apiKey)")!
       
       AF.request(url)
         .validate()
