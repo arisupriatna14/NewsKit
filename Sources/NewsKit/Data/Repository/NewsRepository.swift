@@ -26,7 +26,7 @@ public protocol NKNewsRepositoryProtocol {
   func getNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[NewsModel], Error>
 }
 
-final class NKNewsRepository: NSObject {
+public final class NKNewsRepository: NSObject {
   typealias NKNewsInstance = (NKNewsRemoteDataSource) -> NKNewsRepository
   
   fileprivate let remote: NKNewsRemoteDataSource
@@ -35,25 +35,25 @@ final class NKNewsRepository: NSObject {
     self.remote = remote
   }
   
-  static let sharedInstance: NKNewsInstance = { remote in
+  public static let sharedInstance: NKNewsInstance = { remote in
     return NKNewsRepository(remote: remote)
   }
 }
 
 extension NKNewsRepository: NKNewsRepositoryProtocol {
-  func searchNews(by query: String) -> AnyPublisher<[NewsModel], Error> {
+  public func searchNews(by query: String) -> AnyPublisher<[NewsModel], Error> {
     return remote.searchNews(by: query)
       .map { NKNewsMapper.transformResponsesToDomains(responses: $0) }
       .eraseToAnyPublisher()
   }
   
-  func getNewsByCategory(by category: NewsCategory) -> AnyPublisher<[NewsModel], Error> {
+  public func getNewsByCategory(by category: NewsCategory) -> AnyPublisher<[NewsModel], Error> {
     return remote.fetchNewsByCategory(by: category)
       .map { NKNewsMapper.transformResponsesToDomains(responses: $0) }
       .eraseToAnyPublisher()
   }
   
-  func getNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[NewsModel], Error> {
+  public func getNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[NewsModel], Error> {
     return remote.fetchNewsTopHeadline(by: country)
       .map { NKNewsMapper.transformResponsesToDomains(responses: $0) }
       .eraseToAnyPublisher()
