@@ -27,7 +27,7 @@ public protocol NKNewsRepositoryProtocol {
 }
 
 public final class NKNewsRepository: NSObject {
-  typealias NKNewsInstance = (NKNewsRemoteDataSource) -> NKNewsRepository
+  public typealias NKNewsInstance = (NKNewsRemoteDataSource) -> NKNewsRepository
   
   fileprivate let remote: NKNewsRemoteDataSource
   
