@@ -13,18 +13,18 @@ import Alamofire
 public protocol NKNewsRemoteDataSourceProtocol: AnyObject {
   /// The function for search news
   /// - Parameter query: The query from user input
-  /// - Returns: The list of ``News``
-  func searchNews(by query: String) -> AnyPublisher<[News], Error>
+  /// - Returns: The list of ``NKNews``
+  func searchNews(by query: String) -> AnyPublisher<[NKNews], Error>
   
   /// The function for fetch news by category
-  /// - Parameter category: The category of news ``NewsCategory``
-  /// - Returns: The list of ``News``
-  func fetchNewsByCategory(by category: NewsCategory) -> AnyPublisher<[News], Error>
+  /// - Parameter category: The category of news ``NKNewsCategory``
+  /// - Returns: The list of ``NKNews``
+  func fetchNewsByCategory(by category: NKNewsCategory) -> AnyPublisher<[NKNews], Error>
   
   /// The function for fetch news top headline
-  /// - Parameter country: The country from ``CountryCode``
-  /// - Returns: The list of ``News``
-  func fetchNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[News], Error>
+  /// - Parameter country: The country from ``NKCountryCode``
+  /// - Returns: The list of ``NKNews``
+  func fetchNewsTopHeadline(by country: NKCountryCode) -> AnyPublisher<[NKNews], Error>
 }
 
 /// The News Remote Data Source
@@ -36,52 +36,52 @@ public final class NKNewsRemoteDataSource: NSObject {
 }
 
 extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
-  public func searchNews(by query: String) -> AnyPublisher<[News], Error> {
-    return Future<[News], Error> { completion in
-      let url = URL(string: "\(NewsEndpoint.Get.search(query: query).url)\(NewsKit.apiKey)")!
+  public func searchNews(by query: String) -> AnyPublisher<[NKNews], Error> {
+    return Future<[NKNews], Error> { completion in
+      let url = URL(string: "\(NKNewsEndpoint.Get.search(query: query).url)\(NewsKit.apiKey)")!
       
       AF.request(url)
         .validate()
-        .responseDecodable(of: NewsResponse.self) { response in
+        .responseDecodable(of: NKNewsResponse.self) { response in
           switch response.result {
           case .success(let result):
             completion(.success(result.articles))
           case .failure:
-            completion(.failure(NewsError.invalidSerialization))
+            completion(.failure(NKNewsError.invalidSerialization))
           }
         }
     }.eraseToAnyPublisher()
   }
   
-  public func fetchNewsByCategory(by category: NewsCategory) -> AnyPublisher<[News], Error> {
-    return Future<[News], Error> { completion in
-      let url = URL(string: "\(NewsEndpoint.Get.category(category: category).url)\(NewsKit.apiKey)")!
+  public func fetchNewsByCategory(by category: NKNewsCategory) -> AnyPublisher<[NKNews], Error> {
+    return Future<[NKNews], Error> { completion in
+      let url = URL(string: "\(NKNewsEndpoint.Get.category(category: category).url)\(NewsKit.apiKey)")!
       
       AF.request(url)
         .validate()
-        .responseDecodable(of: NewsResponse.self) { response in
+        .responseDecodable(of: NKNewsResponse.self) { response in
           switch response.result {
           case .success(let result):
             completion(.success(result.articles))
           case .failure:
-            completion(.failure(NewsError.invalidSerialization))
+            completion(.failure(NKNewsError.invalidSerialization))
           }
         }
     }.eraseToAnyPublisher()
   }
   
-  public func fetchNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[News], Error> {
-    return Future<[News], Error> { completion in
-      let url = URL(string: "\(NewsEndpoint.Get.topHeadline(country: country).url)\(NewsKit.apiKey)")!
+  public func fetchNewsTopHeadline(by country: NKCountryCode) -> AnyPublisher<[NKNews], Error> {
+    return Future<[NKNews], Error> { completion in
+      let url = URL(string: "\(NKNewsEndpoint.Get.topHeadline(country: country).url)\(NewsKit.apiKey)")!
       
       AF.request(url)
         .validate()
-        .responseDecodable(of: NewsResponse.self) { response in
+        .responseDecodable(of: NKNewsResponse.self) { response in
           switch response.result {
           case .success(let result):
             completion(.success(result.articles))
           case .failure:
-            completion(.failure(NewsError.invalidSerialization))
+            completion(.failure(NKNewsError.invalidSerialization))
           }
         }
     }.eraseToAnyPublisher()

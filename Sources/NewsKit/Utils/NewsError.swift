@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum NewsError: Error {
+public enum NKNewsError: Error {
   case invalidURL
   case invalidSerialization
   case badHTTPResponse

@@ -8,11 +8,11 @@
 import Foundation
 
 public final class NKNewsMapper {
-  public static func transformResponsesToDomains(responses: [News]) -> [NewsModel] {
+  public static func transformResponsesToDomains(responses: [NKNews]) -> [NKNewsModel] {
     return responses.map {
       let source = NKSourceMapper.transformResponseToDomain(response: $0.source)
       
-      return NewsModel(
+      return NKNewsModel(
         author: $0.author ?? "",
         title: $0.title ?? "",
         description: $0.description ?? "",
@@ -26,7 +26,7 @@ public final class NKNewsMapper {
 }
 
 public final class NKSourceMapper {
-  public static func transformResponseToDomain(response: SourceResponse?) -> SourceModel {
-    return SourceModel(name: response?.name ?? "")
+  public static func transformResponseToDomain(response: NKSourceResponse?) -> NKSourceModel {
+    return NKSourceModel(name: response?.name ?? "")
   }
 }

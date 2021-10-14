@@ -7,7 +7,7 @@
 
 import Foundation
 
-public enum NewsCategory: String {
+public enum NKNewsCategory: String {
   case business
   case entertainment
   case general

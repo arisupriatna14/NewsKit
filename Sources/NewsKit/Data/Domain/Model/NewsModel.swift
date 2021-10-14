@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct NewsModel: Equatable, Identifiable {
+public struct NKNewsModel: Equatable, Identifiable {
   /// The id of the article
   public let id = UUID()
   /// The author of the article
@@ -22,8 +22,8 @@ public struct NewsModel: Equatable, Identifiable {
   public let urlToImage: String
   /// The unformatted content of the article, where available. This is truncated to 200 chars.
   public let content: String
-  /// The display name ``SourceModel/name`` for the source this article came from
-  public let source: SourceModel
+  /// The display name ``NKSourceModel/name`` for the source this article came from
+  public let source: NKSourceModel
   
   public init(
     author: String,
@@ -32,7 +32,7 @@ public struct NewsModel: Equatable, Identifiable {
     url: String,
     urlToImage: String,
     content: String,
-    source: SourceModel
+    source: NKSourceModel
   ) {
     self.author = author
     self.title = title
@@ -45,7 +45,7 @@ public struct NewsModel: Equatable, Identifiable {
 }
 
 /// The Source Response
-public struct SourceModel: Equatable {
+public struct NKSourceModel: Equatable {
   /// The name of source news
   public let name: String
   
@@ -54,9 +54,9 @@ public struct SourceModel: Equatable {
   }
 }
 
-extension NewsModel {
+extension NKNewsModel {
   
-  public static var stub: NewsModel {
+  public static var stub: NKNewsModel {
     .init(
       author: "ABC Australia",
       title: "Vaksin COVID-19 yang Mulai Disuntikkan Pekan Ini, Adakah Efek Sampingnya? - detikNews",
@@ -64,7 +64,7 @@ extension NewsModel {
       url: "https://news.detik.com/abc-australia/d-5286211/vaksin-covid-19-yang-mulai-disuntikkan-pekan-ini-adakah-efek-sampingnya",
       urlToImage: "https://awsimages.detik.net.id/api/wm/2020/12/08/vaksin-covid-19-yang-mulai-disuntikkan-pekan-ini-adakah-efek-sampingnya_169.jpeg?wid=54&w=650&v=1&t=jpeg",
       content: "Canberra - Pekan ini Inggris dijadwalkan akan melaksanakan vaksinasi COVID-19 kepada warganya. Namun, banyak pertanyaan seputar vaksin yang hingga kini belum terjawab.\r\nSementara di Australia sendiri… [+5777 chars]",
-      source: SourceModel(name: "Detik.com")
+      source: NKSourceModel(name: "Detik.com")
     )
   }
   

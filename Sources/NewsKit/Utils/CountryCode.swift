@@ -8,7 +8,7 @@
 import Foundation
 
 /// The 2-letter ISO 3166-1 code of the country you want to get headlines for.
-public enum CountryCode: String {
+public enum NKCountryCode: String {
   /// Indonesia 🇮🇩
   case id
   /// United Arab Emirates 🇦🇪

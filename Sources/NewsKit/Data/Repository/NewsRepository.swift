@@ -13,17 +13,17 @@ public protocol NKNewsRepositoryProtocol {
   /// The function for search news
   /// - Parameter query: The query from user input
   /// - Returns: The list of ``NewsModel``
-  func searchNews(by query: String) -> AnyPublisher<[NewsModel], Error>
+  func searchNews(by query: String) -> AnyPublisher<[NKNewsModel], Error>
   
   /// The function for get news by category
   /// - Parameter category: The category of news ``NewsCategory``
   /// - Returns: The list of ``NewsModel``
-  func getNewsByCategory(by category: NewsCategory) -> AnyPublisher<[NewsModel], Error>
+  func getNewsByCategory(by category: NKNewsCategory) -> AnyPublisher<[NKNewsModel], Error>
   
   /// The function for get news top headline
   /// - Parameter country: The country from ``CountryCode``
   /// - Returns: The list of ``NewsModel``
-  func getNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[NewsModel], Error>
+  func getNewsTopHeadline(by country: NKCountryCode) -> AnyPublisher<[NKNewsModel], Error>
 }
 
 public final class NKNewsRepository: NSObject {
@@ -41,19 +41,19 @@ public final class NKNewsRepository: NSObject {
 }
 
 extension NKNewsRepository: NKNewsRepositoryProtocol {
-  public func searchNews(by query: String) -> AnyPublisher<[NewsModel], Error> {
+  public func searchNews(by query: String) -> AnyPublisher<[NKNewsModel], Error> {
     return remote.searchNews(by: query)
       .map { NKNewsMapper.transformResponsesToDomains(responses: $0) }
       .eraseToAnyPublisher()
   }
   
-  public func getNewsByCategory(by category: NewsCategory) -> AnyPublisher<[NewsModel], Error> {
+  public func getNewsByCategory(by category: NKNewsCategory) -> AnyPublisher<[NKNewsModel], Error> {
     return remote.fetchNewsByCategory(by: category)
       .map { NKNewsMapper.transformResponsesToDomains(responses: $0) }
       .eraseToAnyPublisher()
   }
   
-  public func getNewsTopHeadline(by country: CountryCode) -> AnyPublisher<[NewsModel], Error> {
+  public func getNewsTopHeadline(by country: NKCountryCode) -> AnyPublisher<[NKNewsModel], Error> {
     return remote.fetchNewsTopHeadline(by: country)
       .map { NKNewsMapper.transformResponsesToDomains(responses: $0) }
       .eraseToAnyPublisher()

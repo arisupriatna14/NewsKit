@@ -7,25 +7,25 @@
 
 import Foundation
 
-public class APIService {
+public class NKAPIService {
   public static let baseURL = "https://newsapi.org/v2"
 }
 
-public protocol Endpoint {
+public protocol NKEndpoint {
   var url: String { get }
 }
 
-public enum NewsEndpoint {
-  public enum Get: Endpoint {
+public enum NKNewsEndpoint {
+  public enum Get: NKEndpoint {
     case search(query: String)
-    case topHeadline(country: CountryCode)
-    case category(category: NewsCategory)
+    case topHeadline(country: NKCountryCode)
+    case category(category: NKNewsCategory)
     
     public var url: String {
       switch self {
-      case .search(let query): return "\(APIService.baseURL)/everything?q=\(query)&apiKey="
-      case .topHeadline(let country): return "\(APIService.baseURL)/top-headlines?country=\(country.rawValue)&apiKey="
-      case .category(let category): return "\(APIService.baseURL)/top-headlines?category=\(category.rawValue)&apiKey="
+      case .search(let query): return "\(NKAPIService.baseURL)/everything?q=\(query)&apiKey="
+      case .topHeadline(let country): return "\(NKAPIService.baseURL)/top-headlines?country=\(country.rawValue)&apiKey="
+      case .category(let category): return "\(NKAPIService.baseURL)/top-headlines?category=\(category.rawValue)&apiKey="
       }
     }
   }
