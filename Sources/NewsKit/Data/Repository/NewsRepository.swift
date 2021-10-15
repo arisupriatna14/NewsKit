@@ -12,17 +12,17 @@ import Alamofire
 public protocol NKNewsRepositoryProtocol {
   /// The function for search news
   /// - Parameter query: The query from user input
-  /// - Returns: The list of ``NewsModel``
+  /// - Returns: The list of ``NKNewsModel``
   func searchNews(by query: String) -> AnyPublisher<[NKNewsModel], Error>
   
   /// The function for get news by category
-  /// - Parameter category: The category of news ``NewsCategory``
-  /// - Returns: The list of ``NewsModel``
+  /// - Parameter category: The category of news ``NKNewsCategory``
+  /// - Returns: The list of ``NKNewsModel``
   func getNewsByCategory(by category: NKNewsCategory) -> AnyPublisher<[NKNewsModel], Error>
   
   /// The function for get news top headline
-  /// - Parameter country: The country from ``CountryCode``
-  /// - Returns: The list of ``NewsModel``
+  /// - Parameter country: The country from ``NKCountryCode``
+  /// - Returns: The list of ``NKNewsModel``
   func getNewsTopHeadline(by country: NKCountryCode) -> AnyPublisher<[NKNewsModel], Error>
 }
 
