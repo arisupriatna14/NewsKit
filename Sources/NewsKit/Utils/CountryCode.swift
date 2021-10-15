@@ -7,6 +7,9 @@
 
 import Foundation
 
+/// The Country Code
+///
+/// ## Overview
 /// The 2-letter ISO 3166-1 code of the country you want to get headlines for.
 public enum NKCountryCode: String {
   /// Indonesia 🇮🇩

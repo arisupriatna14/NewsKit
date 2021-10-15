@@ -9,6 +9,7 @@ import Foundation
 import Combine
 import Alamofire
 
+/// The News Repository Protocol
 public protocol NKNewsRepositoryProtocol {
   /// The function for search news
   /// - Parameter query: The query from user input
@@ -27,7 +28,6 @@ public protocol NKNewsRepositoryProtocol {
 }
 
 /// The News Repository Async Protocol
-/// This is async version
 public protocol NKNewsRepositoryAsyncProtocol: AnyObject {
   /// The function for search news with async version
   /// - Parameter query: The query from user input
@@ -45,7 +45,9 @@ public protocol NKNewsRepositoryAsyncProtocol: AnyObject {
   func getNewsTopHeadline(by country: NKCountryCode) async throws -> [NKNewsModel]
 }
 
+/// The News Repository
 public final class NKNewsRepository: NSObject {
+  /// The News Instance
   public typealias NKNewsInstance = (NKNewsRemoteDataSource) -> NKNewsRepository
   
   fileprivate let remote: NKNewsRemoteDataSource
@@ -54,6 +56,7 @@ public final class NKNewsRepository: NSObject {
     self.remote = remote
   }
   
+  /// The news repository shared instance
   public static let sharedInstance: NKNewsInstance = { remote in
     return NKNewsRepository(remote: remote)
   }

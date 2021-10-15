@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// Thew News Model
 public struct NKNewsModel: Equatable, Identifiable {
   /// The id of the article
   public let id = UUID()
@@ -44,7 +45,7 @@ public struct NKNewsModel: Equatable, Identifiable {
   }
 }
 
-/// The Source Response
+/// The Source Model
 public struct NKSourceModel: Equatable {
   /// The name of source news
   public let name: String

@@ -1,3 +1,4 @@
+/// Register your API Key here.
 public struct NewsKit {
   public static var apiKey: String = ""
   

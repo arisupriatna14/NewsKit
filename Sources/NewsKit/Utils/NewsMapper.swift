@@ -7,7 +7,9 @@
 
 import Foundation
 
+/// The News Mapper
 public final class NKNewsMapper {
+  /// This function will transform from data response to data domain model.
   public static func transformResponsesToDomains(responses: [NKNews]) -> [NKNewsModel] {
     return responses.map {
       let source = NKSourceMapper.transformResponseToDomain(response: $0.source)
@@ -25,7 +27,9 @@ public final class NKNewsMapper {
   }
 }
 
+/// The Source Mapper
 public final class NKSourceMapper {
+  /// This function will transform from data response to data domain model.
   public static func transformResponseToDomain(response: NKSourceResponse?) -> NKSourceModel {
     return NKSourceModel(name: response?.name ?? "")
   }

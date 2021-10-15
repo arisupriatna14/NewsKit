@@ -7,6 +7,7 @@
 
 import Foundation
 
+/// The API Service
 public class NKAPIService {
   public static let baseURL = "https://newsapi.org/v2"
 }
@@ -15,6 +16,7 @@ public protocol NKEndpoint {
   var url: String { get }
 }
 
+/// The News Endpoint
 public enum NKNewsEndpoint {
   public enum Get: NKEndpoint {
     case search(query: String)
