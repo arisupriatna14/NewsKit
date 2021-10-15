@@ -131,8 +131,10 @@ extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
 
 extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceAsyncProtocol {
   public func searchNews(by query: String) async throws -> [NKNews] {
-    guard let url = URL(string: "") else { throw NKNewsError.invalidURL }
     var news: [NKNews] = []
+    let endpoint = "\(NKNewsEndpoint.Get.search(query: query).url)\(NewsKit.apiKey)"
+    
+    guard let url = URL(string: endpoint) else { throw NKNewsError.invalidURL }
     
     do {
       let response = try await afRequest(url: url)
@@ -147,8 +149,10 @@ extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceAsyncProtocol {
   }
   
   public func fetchNewsByCategory(by category: NKNewsCategory) async throws -> [NKNews] {
-    guard let url = URL(string: "") else { throw NKNewsError.invalidURL }
     var news: [NKNews] = []
+    let endpoint = "\(NKNewsEndpoint.Get.category(category: category).url)\(NewsKit.apiKey)"
+    
+    guard let url = URL(string: endpoint) else { throw NKNewsError.invalidURL }
     
     do {
       let response = try await afRequest(url: url)
@@ -162,8 +166,10 @@ extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceAsyncProtocol {
   }
   
   public func fetchNewsTopHeadline(by country: NKCountryCode) async throws -> [NKNews] {
-    guard let url = URL(string: "") else { throw NKNewsError.invalidURL }
     var news: [NKNews] = []
+    let endpoint = "\(NKNewsEndpoint.Get.topHeadline(country: country).url)\(NewsKit.apiKey)"
+    
+    guard let url = URL(string: endpoint) else { throw NKNewsError.invalidURL }
     
     do {
       let response = try await afRequest(url: url)
