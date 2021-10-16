@@ -14,16 +14,22 @@ import Foundation
 public enum NKNewsCategory: String {
   /// The category of business
   case business
+
   /// The category of entertainment
   case entertainment
+
   /// The category of general
   case general
+
   /// The category of health
   case health
+
   /// The category of science
   case science
+
   /// The category of sports
   case sports
+
   /// The category of technology
   case technology
 }

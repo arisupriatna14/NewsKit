@@ -15,12 +15,11 @@ public final class NKNewsMapper {
       let source = NKSourceMapper.transformResponseToDomain(response: $0.source)
       
       return NKNewsModel(
-        author: $0.author ?? "",
-        title: $0.title ?? "",
-        description: $0.description ?? "",
+        author: $0.authorText,
+        title: $0.titleText,
+        description: $0.descriptionText,
         url: $0.url ?? "",
         urlToImage: $0.urlToImage ?? "",
-        content: $0.content ?? "",
         source: source
       )
     }
@@ -30,7 +29,7 @@ public final class NKNewsMapper {
 /// The Source Mapper
 public final class NKSourceMapper {
   /// This function will transform from data response to data domain model.
-  public static func transformResponseToDomain(response: NKSourceResponse?) -> NKSourceModel {
-    return NKSourceModel(name: response?.name ?? "")
+  public static func transformResponseToDomain(response: NKSourceResponse) -> NKSourceModel {
+    return NKSourceModel(name: response.name)
   }
 }

@@ -62,6 +62,7 @@ public final class NKNewsRepository: NSObject {
   }
 }
 
+/// The extension of `NKNewsRepository` with implementation ``NKNewsRepositoryProtocol``
 extension NKNewsRepository: NKNewsRepositoryProtocol {
   public func searchNews(by query: String) -> AnyPublisher<[NKNewsModel], Error> {
     return remote.searchNews(by: query)
@@ -82,6 +83,7 @@ extension NKNewsRepository: NKNewsRepositoryProtocol {
   }
 }
 
+/// The extension of `NKNewsRepository` with implementation ``NKNewsRepositoryAsyncProtocol``
 extension NKNewsRepository: NKNewsRepositoryAsyncProtocol {
   public func searchNews(by query: String) async throws -> [NKNewsModel] {
     return try await NKNewsMapper.transformResponsesToDomains(responses: remote.searchNews(by: query))

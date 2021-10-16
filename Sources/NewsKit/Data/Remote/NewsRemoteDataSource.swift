@@ -76,6 +76,7 @@ private extension NKNewsRemoteDataSource {
   }
 }
 
+/// The extension of `NKNewsRemoteDataSource` with implementation ``NKNewsRemoteDataSourceProtocol``
 extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
   public func searchNews(by query: String) -> AnyPublisher<[NKNews], Error> {
     return Future<[NKNews], Error> { completion in
@@ -129,6 +130,7 @@ extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceProtocol {
   }
 }
 
+/// The extension of `NKNewsRemoteDataSource` with implementation ``NKNewsRemoteDataSourceAsyncProtocol``
 extension NKNewsRemoteDataSource: NKNewsRemoteDataSourceAsyncProtocol {
   public func searchNews(by query: String) async throws -> [NKNews] {
     var news: [NKNews] = []
